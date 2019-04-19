@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="" method="POST">
+        <script
+        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="pk_test_rRof5XDsQ6fjU6YPq0IjiPyZ"
+        data-image="/path/to/your/logo.png"
+        data-name="askaway"
+        data-panel-label="Update Card Details"
+        data-label="Update Card Details"
+        data-allow-remember-me=false
+        data-locale="auto">
+        </script>
+      </form>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script>
+
+    $(function() {
+        Stripe.setPublishableKey('PRIMARY_KEY');
+        var card = {
+            "number": "4242424242424242",
+            "cvc": "375",
+            "exp_month": "11",
+            "exp_year": "21"
+        };
+        Stripe.card.createToken(card, stripeResponseHandler);
+    });
+
+    function stripeResponseHandler(status, response) {
+        console.log(response);
+        if (response.error) {
+            // alert('Payment error');
+        } else {
+            var token = response.id;
+            // alert("Token: " + token);
+        }
+    };
+</script>
+
+</html>
+
+<!-- tok_1EL6NwDV8Oe9DUI2ADbB7llK -->
